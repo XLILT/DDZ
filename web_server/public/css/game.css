@@ -5,14 +5,27 @@ html {
     color: #3c3c3c;
 }
 
+body {    
+    height: 818px;
+    background-image: url(../img/body_bg.jpg);
+    background-repeat: repeat;
+}
+
 .head {
     width : 100%;
-    margin: 0;
-    position: fixed;
-    z-index: 103;
     height: 50px;
+    margin: 0;    
     top: 0;
     left: 0;
-    background: #f5f5f5;
     border-bottom: 1px solid #d1d1d1;
+    background: #f5f5f5;
+}
+
+.game-table {    
+    width: 1024px;
+    height: 768px;
+    position: relative;
+    margin: 0 auto;
+
+    background-image: url(../img/table_bg.png);
 }
