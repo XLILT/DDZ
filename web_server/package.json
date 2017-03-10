@@ -1,0 +1,18 @@
+{
+    "name": "web_server",
+    "description": "DouDiZhu online game with web UI",
+    "version": "0.0.1",
+    "author": {
+        "name": "mxl",
+        "email": "xiaolongicx@gmail.com"
+    },
+    "license": "GUN",
+    "dependencies": {
+        "ejs": "",
+        "body-parser": "",
+        "cookie-parser": "",
+        "cookie-session": "",
+        "express": "4.x",
+        "fs":""
+    }
+}
