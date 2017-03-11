@@ -1,0 +1,276 @@
+@charset "utf-8";
+
+.poker {
+	width: 105px;
+	height: 145px;
+	background: url(../img/poker.png) no-repeat -156px -12px;
+}
+
+.poker.small {
+	-webkit-transform: scale(0.45);	
+}
+
+.landlord-poker .poker.small {
+	position: absolute;
+	top: -37px;
+}
+
+.poker .poker-content {
+	padding: 8px;
+}
+
+.poker p.num, .poker p.num::after {
+	width: 16px;
+	height: 21px;
+}
+
+.poker p.num.num10, .poker p.num.num10::after {
+	width: 20px;
+	height: 21px;
+}
+
+.poker p.num.num12, .poker p.num.num12::after {
+	width: 20px;
+	height: 21px;
+}
+
+.poker p.num.num18,
+.poker p.num.num18::after,
+.poker p.num.num19,
+.poker p.num.num19::after {
+	width: 16px;
+	height: 100px;
+}
+
+.poker p.num::after {
+	content: ' ';
+	position: absolute;
+	right: 10px;
+	bottom: 16px;
+	-webkit-transform: rotate(-180deg);
+}
+
+.poker .spade .num.num3,
+.poker .spade p.num.num3::after,
+.poker .clubs .num.num3,
+.poker .clubs p.num.num3::after {
+	background: url(../img/poker.png) no-repeat -195px -465px;
+}
+
+.poker .heart .num.num3,
+.poker .heart p.num.num3::after,
+.poker .diamond .num.num3,
+.poker .diamond p.num.num3::after {
+	background: url(../img/poker.png) no-repeat -195px -490px;
+}
+
+.poker .spade .num.num4,
+.poker .spade p.num.num4::after,
+.poker .clubs .num.num4,
+.poker .clubs p.num.num4::after {
+	background: url(../img/poker.png) no-repeat -178px -465px;
+}
+
+.poker .heart .num.num4,
+.poker .heart p.num.num4::after,
+.poker .diamond .num.num4,
+.poker .diamond p.num.num4::after {
+	background: url(../img/poker.png) no-repeat -178px -490px;
+}
+
+.poker .spade .num.num5,
+.poker .spade p.num.num5::after,
+.poker .clubs .num.num5,
+.poker .clubs p.num.num5::after {
+	background: url(../img/poker.png) no-repeat -162px -465px;
+}
+
+.poker .heart .num.num5,
+.poker .heart p.num.num5::after,
+.poker .diamond .num.num5,
+.poker .diamond p.num.num5::after {
+	background: url(../img/poker.png) no-repeat -162px -490px;
+}
+
+.poker .spade .num.num6,
+.poker .spade p.num.num6::after,
+.poker .clubs .num.num6,
+.poker .clubs p.num.num6::after {
+	background: url(../img/poker.png) no-repeat -146px -465px;
+}
+
+.poker .heart .num.num6,
+.poker .heart p.num.num6::after,
+.poker .diamond .num.num6,
+.poker .diamond p.num.num6::after {
+	background: url(../img/poker.png) no-repeat -146px -490px;
+}
+
+.poker .spade .num.num7,
+.poker .spade p.num.num7::after,
+.poker .clubs .num.num7,
+.poker .clubs p.num.num7::after {
+	background: url(../img/poker.png) no-repeat -228px -465px;
+}
+
+.poker .heart .num.num7,
+.poker .heart p.num.num7::after,
+.poker .diamond .num.num7,
+.poker .diamond p.num.num7::after {
+	background: url(../img/poker.png) no-repeat -228px -490px;
+}
+
+.poker .spade .num.num8,
+.poker .spade p.num.num8::after,
+.poker .clubs .num.num8,
+.poker .clubs p.num.num8::after {
+	background: url(../img/poker.png) no-repeat -211px -465px;
+}
+
+.poker .heart .num.num8,
+.poker .heart p.num.num8::after,
+.poker .diamond .num.num8,
+.poker .diamond p.num.num8::after {
+	background: url(../img/poker.png) no-repeat -211px -490px;
+}
+
+.poker .spade .num.num9,
+.poker .spade p.num.num9::after,
+.poker .clubs .num.num9,
+.poker .clubs p.num.num9::after {
+	background: url(../img/poker.png) no-repeat -129px -465px;
+}
+
+.poker .heart .num.num9,
+.poker .heart p.num.num9::after,
+.poker .diamond .num.num9,
+.poker .diamond p.num.num9::after {
+	background: url(../img/poker.png) no-repeat -129px -490px;
+}
+
+.poker .spade .num.num10,
+.poker .spade p.num.num10::after,
+.poker .clubs .num.num10,
+.poker .clubs p.num.num10::after {
+	background: url(../img/poker.png) no-repeat -106px -465px;
+}
+
+.poker .heart .num.num10,
+.poker .heart p.num.num10::after,
+.poker .diamond .num.num10,
+.poker .diamond p.num.num10::after {
+	background: url(../img/poker.png) no-repeat -106px -490px;
+}
+
+.poker .spade .num.num11,
+.poker .spade p.num.num11::after,
+.poker .clubs .num.num11,
+.poker .clubs p.num.num11::after {
+	background: url(../img/poker.png) no-repeat -89px -465px;
+}
+
+.poker .heart .num.num11,
+.poker .heart p.num.num11::after,
+.poker .diamond .num.num11,
+.poker .diamond p.num.num11::after {
+	background: url(../img/poker.png) no-repeat -89px -490px;
+}
+
+.poker .spade .num.num12,
+.poker .spade p.num.num12::after,
+.poker .clubs .num.num12,
+.poker .clubs p.num.num12::after {
+	background: url(../img/poker.png) no-repeat -67px -465px;
+}
+
+.poker .heart .num.num12,
+.poker .heart p.num.num12::after,
+.poker .diamond .num.num12,
+.poker .diamond p.num.num12::after {
+	background: url(../img/poker.png) no-repeat -67px -490px;
+}
+
+.poker .spade .num.num13,
+.poker .spade p.num.num13::after,
+.poker .clubs .num.num13,
+.poker .clubs p.num.num13::after {
+	background: url(../img/poker.png) no-repeat -49px -465px;
+}
+
+.poker .heart .num.num13,
+.poker .heart p.num.num13::after,
+.poker .diamond .num.num13,
+.poker .diamond p.num.num13::after {
+	background: url(../img/poker.png) no-repeat -49px -490px;
+}
+
+.poker .spade .num.num14,
+.poker .spade p.num.num14::after,
+.poker .clubs .num.num14,
+.poker .clubs p.num.num14::after {
+	background: url(../img/poker.png) no-repeat -29px -465px;
+}
+
+.poker .heart .num.num14,
+.poker .heart p.num.num14::after,
+.poker .diamond .num.num14,
+.poker .diamond p.num.num14::after {
+	background: url(../img/poker.png) no-repeat -29px -490px;
+}
+
+.poker .spade .num.num15,
+.poker .spade p.num.num15::after,
+.poker .clubs .num.num15,
+.poker .clubs p.num.num15::after {
+	background: url(../img/poker.png) no-repeat -12px -465px;
+}
+
+.poker .heart .num.num15,
+.poker .heart p.num.num15::after,
+.poker .diamond .num.num15,
+.poker .diamond p.num.num15::after {
+	background: url(../img/poker.png) no-repeat -12px -490px;
+}
+
+.poker .num.num18,
+.poker p.num.num18::after {
+	background: url(../img/poker.png) no-repeat -288px -73px;
+}
+
+.poker .num.num19,
+.poker p.num.num19::after {
+	background: url(../img/poker.png) no-repeat -270px -73px;
+}
+
+.poker p.shape, .poker p.shape::after {
+	width: 20px;
+    height: 24px;    
+}
+
+.poker p.shape::after {
+	content: ' ';
+    position: absolute;
+    right: 10px;
+    bottom: 38px;
+    -webkit-transform: rotate(-180deg);
+}
+
+.poker .shape.spade,
+.poker p.shape.spade::after {
+	background: url(http://xl.forever.love/web/doudizhu/css/../img/poker.png) no-repeat -320px -179px;
+}
+
+.poker .shape.heart,
+.poker p.shape.heart::after {
+	background: url(http://xl.forever.love/web/doudizhu/css/../img/poker.png) no-repeat -294px -179px;
+}
+
+.poker .shape.clubs,
+.poker p.shape.clubs::after {
+	background: url(http://xl.forever.love/web/doudizhu/css/../img/poker.png) no-repeat -270px -179px;
+}
+
+.poker .shape.diamond,
+.poker p.shape.diamond::after {
+	background: url(http://xl.forever.love/web/doudizhu/css/../img/poker.png) no-repeat -247px -179px;
+}
