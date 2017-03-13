@@ -1,0 +1,57 @@
+@charset 'utf-8';
+
+.yellow-num {
+    height: 20px;
+    float: right;
+    background: url(../img/number.png) no-repeat;
+}
+
+.yellow-num0 {
+    width: 19px;
+    background-position: 0px 0px;
+}
+
+.yellow-num1 {
+    width: 13px;
+    background-position: -19px 0px;
+}
+
+.yellow-num2 {
+    width: 15px;
+    background-position: -32px 0px;
+}
+
+.yellow-num3 {
+    width: 15px;
+    background-position: -47px 0px;
+}
+
+.yellow-num4 {
+    width: 15px;
+    background-position: -62px 0px;
+}
+
+.yellow-num5 {
+    width: 15px;
+    background-position: -77px 0px;
+}
+
+.yellow-num6 {
+    width: 15px;
+    background-position: -92px 0px;
+}
+
+.yellow-num7 {
+    width: 15px;
+    background-position: -108px 0px;
+}
+
+.yellow-num8 {
+    width: 15px;
+    background-position: -124px 0px;
+}
+
+.yellow-num9 {
+    width: 15px;
+    background-position: -139px 0px;
+}
