@@ -16,7 +16,7 @@ function Poker(id) {
 
 Poker.shapes = {
     1: "spade",
-    1: "heart",
+    2: "heart",
     3: "clubs",
     4: "diamond"
 };

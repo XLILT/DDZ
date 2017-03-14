@@ -237,7 +237,11 @@ ul, li {
     background: url(../img/poker.png) no-repeat -23px -12px;
 }
 
+.poker-count {
+    position: relative;
+    right: 43px;
+}
+
 .poker-count .yellow-num {
-    float: none;
-    margin: 0px auto;
+    float: right;
 }
