@@ -12,7 +12,7 @@ UI.create_small_poker_dom = function(poker, margin_left, z_index) {
     $shape_node.addClass(poker.get_shape());
 
     var $poker_content_node = $('<div></div>');
-    $poker_content_node.addClass('poker_content');
+    $poker_content_node.addClass('poker-content');
 
     $poker_content_node.append($num_node);
     $poker_content_node.append($shape_node);

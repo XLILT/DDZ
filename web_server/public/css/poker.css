@@ -4,10 +4,15 @@
 	width: 105px;
 	height: 145px;
 	background: url(../img/poker.png) no-repeat -156px -12px;
+	position: relative;
 }
 
 .poker.small {
 	-webkit-transform: scale(0.45);
+}
+
+.poker.middle {
+	-webkit-transform: scale(0.65);
 }
 
 .landlord-poker .poker.small {
@@ -24,8 +29,12 @@
 	height: 21px;
 }
 
+.poker p.num {
+	position: relative;
+}
+
 .poker p.num.num10, .poker p.num.num10::after {
-	width: 20px;
+	width: 22px;
 	height: 21px;
 }
 
@@ -45,8 +54,8 @@
 .poker p.num::after {
 	content: ' ';
 	position: absolute;
-	right: 10px;
-	bottom: 16px;
+	left: 65px;
+	top: 100px;
 	-webkit-transform: rotate(-180deg);
 }
 
@@ -247,11 +256,15 @@
     height: 24px;
 }
 
+.poker p.shape {
+	position: relative;
+}
+
 .poker p.shape::after {
 	content: ' ';
     position: absolute;
-    right: 10px;
-    bottom: 38px;
+    left: 65px;
+    top: 55px;
     -webkit-transform: rotate(-180deg);
 }
 
