@@ -1,10 +1,10 @@
 @charset "utf-8";
 
 .poker {
-	width: 105px;
-	height: 145px;
+	width: 102px;
+	height: 139px;
 	background: url(../img/poker.png) no-repeat -156px -12px;
-	position: relative;
+	position: absolute;
 }
 
 .poker.small {

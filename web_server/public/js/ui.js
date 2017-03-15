@@ -29,7 +29,7 @@ UI.create_small_poker_dom = function(poker, margin_left, z_index) {
     return $poker_position_node;
 };
 
-UI.create_middle_poker_dom = function(poker, float_direction, z_index, left_right, distance) {
+UI.create_middle_poker_dom = function(poker, z_index, margin_left) {
     var $num_node = $('<p></p>');
     $num_node.addClass('num');
     $num_node.addClass('num' + poker.get_num());
@@ -49,16 +49,9 @@ UI.create_middle_poker_dom = function(poker, float_direction, z_index, left_righ
     $poker_position_node.addClass('poker middle');
 
     $poker_position_node.css({
-        'float': float_direction,
-        'z-index': z_index
+        'z-index': z_index,
+        'margin-left': margin_left
     });
-
-    if (left_right === 'right') {
-        $poker_position_node.css('right', distance);
-    }
-    else {
-        $poker_position_node.css('left', distance);
-    }
 
     $poker_position_node.append($poker_content_node);
 
@@ -132,26 +125,24 @@ UI.show_enemy_hand_poker = function(position, poker_count) {
 
 UI.show_enemy_ground_poker = function(position, pokers) {
     var class_name = position == 'left' ? '.left-ground-poker' : '.right-ground-poker';
-    var offset_direction = position == 'left' ? 'right' : 'left';
 
     $(class_name).children().remove();
 
-    const distance_interval = 85;
-    var distance = 0;
-    var z_index, layer_interval;
+    var margin_left = 0, margin_interval = 20;
+    var z_index = 1, layer_interval = 1;
 
-    if (position === 'left') {
-        z_index = 1;
-        layer_interval = 1;
-    }
-    else {
+    if (position === 'right') {
+        margin_left = 263;
+        margin_interval = -margin_interval;
         z_index = 100;
-        layer_interval = -1;
+        layer_interval = -layer_interval;
+
+        pokers = pokers.reverse();
     }
 
     pokers.forEach(function(poker) {
-        $(class_name).append(UI.create_middle_poker_dom(poker, position, z_index, offset_direction, distance));
-            distance += distance_interval;
+        $(class_name).append(UI.create_middle_poker_dom(poker, z_index, margin_left));
+            margin_left += margin_interval;
             z_index += layer_interval;
     });
 }
