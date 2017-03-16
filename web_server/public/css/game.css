@@ -195,7 +195,7 @@ ul, li {
 
 .enemy-poker {
     width: 100%;
-    height: 300px;
+    height: 230px;
 }
 
 .left-hand-poker {
@@ -244,4 +244,194 @@ ul, li {
 
 .poker-count .yellow-num {
     float: right;
+}
+
+.my-ground-poker {
+    width: 100%;
+    height: 95px;
+}
+
+.my-ground-poker .poker.middle {
+    margin-top: -20px;
+}
+
+.gamble-score-bar,
+.tool-bar {
+    height: 50px;
+}
+
+.gamble-score-bar {
+    padding: 0 170px;
+}
+
+.tool-bar {
+    padding: 0 260px;
+}
+
+.button {
+    width: 50px;
+    height: 26px;
+    padding: 13px 23px;
+    cursor: pointer;
+    background: url(../img/button.png) no-repeat -15px -78px;
+}
+
+.button.disable,
+.button.disable:hover {
+    cursor: default;
+    background-position: -15px -238px;
+}
+
+.button:hover {
+    background-position: -15px -4px;
+}
+
+.gamble-score-bar .button,
+.tool-bar .button {
+    float: left;
+    margin: 0 36px;
+}
+
+.button .button-num {
+    width: 18px;
+    height: 28px;
+    border: 0 none;
+    background: url(../img/button.png) no-repeat 0 0;
+    float: left;
+}
+
+.button .button-text-unit {
+    width: 25px;
+    height: 28px;
+    border: 0 none;
+    background: url(../img/button.png) no-repeat 0 0;
+    float: left;
+}
+
+.button .button-text {
+    width: 50px;
+    height: 28px;
+    border: 0 none;
+    background: url(../img/button.png) no-repeat 0 0;
+}
+
+.button .button-num.one {
+    background-position: -185px -63px;
+}
+
+.button:hover .button-num.one {
+    background-position: -125px -63px;
+}
+
+.button.disable .button-num.one {
+    background-position: -422px -58px;
+}
+
+.button.disable.highlight .button-num.one {
+    background-position: -185px -63px;
+}
+
+.button .button-num.two {
+    background-position: -202px -63px;
+}
+
+.button:hover .button-num.two {
+    background-position: -142px -63px;
+}
+
+.button.disable .button-num.two {
+    background-position: -440px -58px;
+}
+
+.button.disable.highlight .button-num.two {
+    background-position: -202px -63px;
+}
+
+.button .button-num.three {
+    background-position: -219px -63px;
+}
+
+.button:hover .button-num.three {
+    background-position: -159px -63px;
+}
+
+.button.disable .button-num.three {
+    background-position: -456px -58px;
+}
+
+.button.disable.highlight .button-num.three {
+    background-position: -219px -63px;
+}
+
+.button .button-text-unit.point {
+    background-position: -212px -94px;
+}
+
+.button:hover .button-text-unit.point {
+    background-position: -185px -94px;
+}
+
+.button.disable .button-text-unit.point {
+    background-position: -476px -58px;
+}
+
+.button.disable.highlight .button-text-unit.point {
+    background-position: -212px -94px;
+}
+
+.button .button-text.no-gamble {
+    background-position: -182px -3px;
+}
+
+.button:hover .button-text.no-gamble {
+    background-position: -122px -3px;
+}
+
+.button.disable .button-text.no-gamble {
+    background-position: -422px -3px;
+}
+
+.button.disable.highlight .button-text.no-gamble {
+    background-position: -122px -3px;
+}
+
+.button .button-text.pass {
+    background-position: -244px -5px;
+}
+
+.button:hover .button-text.pass {
+    background-position: -141px -179px;
+}
+
+.button.disable .button-text.pass {
+    background-position: -422px -3px;
+}
+
+.button .button-text.reselect {
+    background-position: -244px -36px;
+}
+
+.button:hover .button-text.reselect {
+    background-position: -141px -152px;
+}
+
+.button.disable .button-text.reselect {
+    background-position: -422px -32px;
+}
+
+.button .button-text.play {
+    background-position: -245px -96px;
+}
+
+.button:hover .button-text.play {
+    background-position: -125px -96px;
+}
+
+.button.disable .button-text.play {
+    background-position: -481px -32px;
+}
+
+.my-info-wrap {
+    width: 100%;
+    height: 155px;
 }

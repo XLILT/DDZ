@@ -83,7 +83,7 @@ UI.create_yellow_num_dom = function(num) {
     });
 
     return dom_arr;
-}
+};
 
 UI.show_rate = function(rate) {
     $('.rate-num').children().remove();
@@ -92,7 +92,7 @@ UI.show_rate = function(rate) {
     $yellow_num_dom.forEach(function($dom) {
         $('.rate-num').append($dom);
     });
-}
+};
 
 UI.show_bscore = function(bscore) {
     $('.bscore-num').children().remove();
@@ -101,7 +101,7 @@ UI.show_bscore = function(bscore) {
     $yellow_num_dom.forEach(function($dom) {
         $('.bscore-num').append($dom);
     });
-}
+};
 
 UI.show_enemy_portrait = function(position, name, sex) {
     var class_name = position == 'left' ? '.left-user' : '.right-user';
@@ -109,7 +109,7 @@ UI.show_enemy_portrait = function(position, name, sex) {
     $('.enemy-base ' + class_name + ' .user-portrait-wrap .user-portrait').removeClass('hide male female landlord');
     $('.enemy-base ' + class_name + ' .user-portrait-wrap .user-portrait').addClass(sex);
     $('.enemy-base ' + class_name + ' .user-name').html(name);
-}
+};
 
 UI.show_enemy_hand_poker = function(position, poker_count) {
     var class_name = position == 'left' ? '.left-hand-poker' : '.right-hand-poker';
@@ -121,7 +121,7 @@ UI.show_enemy_hand_poker = function(position, poker_count) {
     $yellow_num_dom.forEach(function($dom) {
         $(class_name + ' .poker-count').append($dom);
     });
-}
+};
 
 UI.show_enemy_ground_poker = function(position, pokers) {
     var class_name = position == 'left' ? '.left-ground-poker' : '.right-ground-poker';
@@ -145,4 +145,21 @@ UI.show_enemy_ground_poker = function(position, pokers) {
             margin_left += margin_interval;
             z_index += layer_interval;
     });
+};
+
+UI.show_my_ground_poker = function(pokers) {
+    $('.my-ground-poker').children().remove();
+
+    const margin_interval = 20, layer_interval = 1;
+    var margin_left = (1024 - (pokers.length - 1) * 20 - 90) / 2, z_index = 1;
+
+    pokers.forEach(function(poker) {
+        $('.my-ground-poker').append(UI.create_middle_poker_dom(poker, z_index, margin_left));
+        margin_left += margin_interval;
+        z_index += layer_interval;
+    });
+};
+
+UI.show_gamble_score_bar = function(is_disable) {
+
 }

@@ -17,7 +17,7 @@
 
 .landlord-poker .poker.small {
 	position: absolute;
-	top: -37px;
+	margin-top: -37px;
 }
 
 .poker .poker-content {

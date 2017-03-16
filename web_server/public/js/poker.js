@@ -7,11 +7,11 @@ function Poker(id) {
 
     this.get_num = function() {
         return this.id % Poker.MASK;
-    }
+    };
 
     this.get_shape = function() {
         return Poker.shapes[parseInt(this.id / Poker.MASK)];
-    }
+    };
 }
 
 Poker.shapes = {
