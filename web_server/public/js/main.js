@@ -13,4 +13,10 @@
     UI.show_enemy_ground_poker('left', [new Poker(203), new Poker(204), new Poker(205), new Poker(206), new Poker(207)]);
     UI.show_enemy_ground_poker('right', [new Poker(303), new Poker(304), new Poker(305), new Poker(306), new Poker(307)]);
     UI.show_my_ground_poker([new Poker(403), new Poker(404), new Poker(405), new Poker(406), new Poker(407)]);
+
+    //UI.show_gamble_score_bar();
+    //UI.gamble_score(1);
+
+    UI.show_tool_bar();
+
 })(window);

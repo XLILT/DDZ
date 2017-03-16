@@ -160,6 +160,42 @@ UI.show_my_ground_poker = function(pokers) {
     });
 };
 
-UI.show_gamble_score_bar = function(is_disable) {
+UI.show_gamble_score_bar = function() {
+    $('.tool-bar').addClass('hide');
+
+    $('.gamble-score-bar').removeClass('hide');
+    $('.gamble-score-bar .button').removeClass('disable');
+}
+
+UI.gamble_score = function(score) {
+    $('.gamble-score-bar .button').addClass('disable');
+
+    switch(score)
+    {
+    case 1:
+        $('.gamble-score-bar .button .one').parent().addClass('highlight');
+        break;
+    case 2:
+        $('.gamble-score-bar .button .two').parent().addClass('highlight');
+        break;
+    case 3:
+        $('.gamble-score-bar .button .three').parent().addClass('highlight');
+        break;
+    default:
+        $('.gamble-score-bar .button .no-gamble').parent().addClass('highlight');
+    }
+}
+
+UI.show_tool_bar = function(is_disable = false) {
+    $('.gamble-score-bar').addClass('hide');
+
+    $('.tool-bar').removeClass('hide');
+
+    if (is_disable) {
+        $('.tool-bar .button').addClass('disable');
+    }
+    else {
+        $('.tool-bar .button').removeClass('disable');
+    }
 
 }
