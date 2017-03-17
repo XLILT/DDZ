@@ -77,6 +77,8 @@ UI.create_poker_dom = function(poker, z_index, margin_left) {
     var $poker_position_node = $('<div></div>');
     $poker_position_node.addClass('poker');
 
+    $poker_position_node.attr("poker-id", poker.id);
+
     $poker_position_node.css({
         'z-index': z_index,
         'margin-left': margin_left
@@ -200,7 +202,7 @@ UI.show_gamble_score_bar = function() {
 
     $('.gamble-score-bar').removeClass('hide');
     $('.gamble-score-bar .button').removeClass('disable');
-}
+};
 
 UI.gamble_score = function(score) {
     $('.gamble-score-bar .button').addClass('disable');
@@ -219,7 +221,7 @@ UI.gamble_score = function(score) {
     default:
         $('.gamble-score-bar .button .no-gamble').parent().addClass('highlight');
     }
-}
+};
 
 UI.show_tool_bar = function(is_disable = false) {
     $('.gamble-score-bar').addClass('hide');
@@ -233,7 +235,7 @@ UI.show_tool_bar = function(is_disable = false) {
         $('.tool-bar .button').removeClass('disable');
     }
 
-}
+};
 
 UI.show_tips = function(tips) {
     $('.tips-info').html(tips);
@@ -241,7 +243,7 @@ UI.show_tips = function(tips) {
     setTimeout(function() {
         $('.tips-info').html('');
     }, 3000);
-}
+};
 
 UI.show_my_hand_poker = function(pokers) {
     $('.my-hand-poker').children().remove();
@@ -261,4 +263,16 @@ UI.show_my_hand_poker = function(pokers) {
     $yellow_num_dom.forEach(function($dom) {
         $('.my-base-info .poker-count').append($dom);
     });
-}
+};
+
+UI.get_selected_pokers = function() {
+    var selected_pokers = [];
+
+    var $nodes = $('.my-hand-poker .poker.selected');
+    $nodes.each(function(index) {
+        var poker = new Poker(parseInt($nodes.eq(index).attr('poker-id')));
+        selected_pokers.push(poker);
+    });
+
+    return selected_pokers;
+};

@@ -1,4 +1,6 @@
 (function(window){
+    window.game = new Game();
+
     UI.show_landlord_poker([new Poker(103), new Poker(104), new Poker(105)]);
     UI.show_rate(10);
     UI.show_bscore(2);
@@ -24,4 +26,6 @@
     UI.show_my_portrait('xl', 'male');
 
     UI.show_my_hand_poker([new Poker(408), new Poker(409), new Poker(410), new Poker(411), new Poker(412)]);
+
+
 })(window);
