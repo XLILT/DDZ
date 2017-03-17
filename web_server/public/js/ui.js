@@ -58,6 +58,35 @@ UI.create_middle_poker_dom = function(poker, z_index, margin_left) {
     return $poker_position_node;
 };
 
+UI.create_poker_dom = function(poker, z_index, margin_left) {
+    var $num_node = $('<p></p>');
+    $num_node.addClass('num');
+    $num_node.addClass('num' + poker.get_num());
+    $num_node.addClass(poker.get_shape());
+
+    var $shape_node = $('<p></p>');
+    $shape_node.addClass('shape');
+    $shape_node.addClass(poker.get_shape());
+
+    var $poker_content_node = $('<div></div>');
+    $poker_content_node.addClass('poker-content');
+
+    $poker_content_node.append($num_node);
+    $poker_content_node.append($shape_node);
+
+    var $poker_position_node = $('<div></div>');
+    $poker_position_node.addClass('poker');
+
+    $poker_position_node.css({
+        'z-index': z_index,
+        'margin-left': margin_left
+    });
+
+    $poker_position_node.append($poker_content_node);
+
+    return $poker_position_node;
+};
+
 UI.show_landlord_poker = function(pokers) {
     $('.landlord-poker').children().remove();
 
@@ -110,6 +139,12 @@ UI.show_enemy_portrait = function(position, name, sex) {
     $('.enemy-base ' + class_name + ' .user-portrait-wrap .user-portrait').addClass(sex);
     $('.enemy-base ' + class_name + ' .user-name').html(name);
 };
+
+UI.show_my_portrait = function(name, sex) {
+    $('.my-base-info .user-portrait-wrap .user-portrait').removeClass('hide male female landlord');
+    $('.my-base-info .user-portrait-wrap .user-portrait').addClass(sex);
+    $('.my-base-info .user-name').html(name);
+}
 
 UI.show_enemy_hand_poker = function(position, poker_count) {
     var class_name = position == 'left' ? '.left-hand-poker' : '.right-hand-poker';
@@ -198,4 +233,32 @@ UI.show_tool_bar = function(is_disable = false) {
         $('.tool-bar .button').removeClass('disable');
     }
 
+}
+
+UI.show_tips = function(tips) {
+    $('.tips-info').html(tips);
+
+    setTimeout(function() {
+        $('.tips-info').html('');
+    }, 3000);
+}
+
+UI.show_my_hand_poker = function(pokers) {
+    $('.my-hand-poker').children().remove();
+
+    const margin_interval = 30, layer_interval = 1;
+    var margin_left = (889 - (pokers.length - 1) * margin_interval - 102) / 2, z_index = 1;
+
+    pokers.forEach(function(poker) {
+        $('.my-hand-poker').append(UI.create_poker_dom(poker, z_index, margin_left));
+        margin_left += margin_interval;
+        z_index += layer_interval;
+    });
+
+    $('.my-base-info .poker-count').children().remove();
+
+    var $yellow_num_dom = UI.create_yellow_num_dom(pokers.length).reverse();
+    $yellow_num_dom.forEach(function($dom) {
+        $('.my-base-info .poker-count').append($dom);
+    });
 }

@@ -31,7 +31,7 @@ ul, li {
 
 .main-body {
     margin-top: 50px;
-    height: 700px;
+    height: 740px;
     background-image: url(../img/body_bg.jpg);
     background-repeat: repeat;
 }
@@ -128,7 +128,7 @@ ul, li {
 
 .game-table {
     width: 1024px;
-    height: 700px;
+    height: 740px;
     margin: auto auto;
 
     background-image: url(../img/table_bg.png);
@@ -253,6 +253,11 @@ ul, li {
 
 .my-ground-poker .poker.middle {
     margin-top: -20px;
+}
+
+.bar-wrap {
+    width: 100%;
+    height: 50px;
 }
 
 .gamble-score-bar,
@@ -431,7 +436,54 @@ ul, li {
     background-position: -481px -32px;
 }
 
+.tips-bar {
+    width: 1024px;
+    height: 30px;
+
+    position: absolute;
+    z-index: 1;
+}
+
+.tips-info {
+    text-align: center;
+    font-size: 18px;
+    font-weight: bold;
+    color: #F60;
+}
+
 .my-info-wrap {
     width: 100%;
-    height: 155px;
+    height: 193px;
+    float: left;
+}
+
+.my-base-info {
+    width: 115px;
+    height: 140px;
+    margin-top: 30px;
+    margin-left: 20px;
+    float: left;
+}
+
+.my-base-info .poker-count {
+    position:relative;
+    top: -30px;
+}
+
+.my-hand-poker {
+    width: 889px;
+    height: 163px;
+
+    position:relative;
+    top: 30px;
+
+    float: left;
+}
+
+.my-hand-poker .poker {
+    top: 20px;
+}
+
+.my-hand-poker .poker.selected {
+    top: 0px;
 }

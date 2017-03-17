@@ -3,7 +3,7 @@
     UI.show_rate(10);
     UI.show_bscore(2);
 
-    UI.show_enemy_portrait('left', 'xl', 'male');
+    UI.show_enemy_portrait('left', 'xl', 'landlord');
     UI.show_enemy_portrait('right', 'cx', 'female');
 
     UI.show_enemy_hand_poker('left', 9);
@@ -19,4 +19,9 @@
 
     UI.show_tool_bar();
 
+    //UI.show_tips("不符合出牌规则");
+
+    UI.show_my_portrait('xl', 'male');
+
+    UI.show_my_hand_poker([new Poker(408), new Poker(409), new Poker(410), new Poker(411), new Poker(412)]);
 })(window);
