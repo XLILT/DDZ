@@ -6,7 +6,7 @@ function Enemy() {
     this.hand_poker_count = 0;
     this.last_ground_poker = [];
 
-    this.location_position = function(your_index) {
+    this.locate_position = function(your_index) {
         if (your_index === this.index + 1 || your_index === this.index - 2) {
             this.position = 'left';
         }

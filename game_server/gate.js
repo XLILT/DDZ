@@ -19,7 +19,9 @@ function GateServer(host, port) {
 	};
 
 	this.say_to_session = function(id, data) {
-		this.session_map[id].say_to_client(data);
+		if(this.session_map[id]) {
+			this.session_map[id].say_to_client(data);
+		}
 	};
 
 	this.bind_game = function(game) {

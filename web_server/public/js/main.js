@@ -2,12 +2,14 @@
     window.game = new Game();
 	window.client = new Client('http://xl.forever.love:8888');
 
+	client.login();
+
     UI.show_landlord_poker([new Poker(103), new Poker(104), new Poker(105)]);
     UI.show_rate(10);
     UI.show_bscore(2);
 
-    UI.show_enemy_portrait('left', 'xl', 'landlord');
-    UI.show_enemy_portrait('right', 'cx', 'female');
+    //UI.show_enemy_portrait('left', 'xl', 'landlord');
+    //UI.show_enemy_portrait('right', 'cx', 'female');
 
     UI.show_enemy_hand_poker('left', 9);
     UI.show_enemy_hand_poker('right', 10);
@@ -24,7 +26,7 @@
 
     //UI.show_tips("不符合出牌规则");
 
-    UI.show_my_portrait('xl', 'male');
+    //UI.show_my_portrait('xl', 'male');
 
     UI.show_my_hand_poker([new Poker(408), new Poker(409), new Poker(410), new Poker(411), new Poker(412)]);
 })(window);

@@ -1,5 +1,6 @@
 #!/usr/bin/env node
 
+var Http = require('http');
 var SocketIO = require('socket.io');
 var Conf = require('./conf');
 
@@ -8,16 +9,23 @@ exports = module.exports = SockIONetServer;
 function SockIONetServer(host, port) {
 	this.host = host;
 	this.port = port;
-	this.io = new SocketIO();
+	this.http_server = Http.createServer();
+	this.io = SocketIO(this.http_server);
 	this.session_id = 1;
 	this.session_map = {};
 	
 	this.io.on('connection', (socket)  => {
 		this.add_session(this.create_session(this.session_id++, socket));
 	});
+
 	this.init = function() {
-		this.io.listen(this.port);
-		console.log(`Server now listenning on ${this.port}`);
+		//this.io.listen(this.port);
+		//console.log(`Server now listenning on ${this.port}`);
+
+		this.http_server.listen(this.port, this.host, () => {
+		//this.http_server.listen(this.port, () => {
+			console.log(`Server now listenning on ${this.http_server.address().address}:${this.http_server.address().port}`);
+		});
 	};
 
 	this.final = function() {
