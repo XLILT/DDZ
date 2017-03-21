@@ -2,6 +2,7 @@
 
 var readline = require('readline');
 var GateServer = require('./gate');
+var Game = require('./game');
 
 const rl = readline.createInterface({
 	input:process.stdin,
@@ -10,6 +11,10 @@ const rl = readline.createInterface({
 
 var gate = new GateServer('0.0.0.0', 8888);
 gate.init();
+
+var game = new Game(gate);
+
+gate.bind_game(game);
 
 rl.on('line', (input) => {
 	switch(input)

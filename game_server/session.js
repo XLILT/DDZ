@@ -46,5 +46,13 @@ function Session(id, socket, server) {
 			 console.log(`session on data ${data}`);
 		}
 	};
+
+	this.host = function() {
+		return this.socket.address().address;
+	};
+
+	this.port = function() {
+		return this.socket.address().port;
+	};
 }
 

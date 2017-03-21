@@ -12,9 +12,19 @@ function GateSession(id, socket, server) {
 	this.package_buf = Buffer.alloc(0);
 
 	this.on_data = function(data) {
+		if(Conf.is_debug) {
+			console.log('session get:', data);
+		}
+
+		this.server.on_client_data(this.id, data);
+		/*
 		var buf = data;
 		if(this.next_package_len === 0) {
-			this.next_package_len = buf.readInt32LE();
+			if(buf.length < 4) {
+				return;
+			}
+
+			this.next_package_len = buf.readInt32BE();
 			buf = buf.slice(4);
 
 			if(Conf.is_debug) {
@@ -39,14 +49,30 @@ function GateSession(id, socket, server) {
 				this.on_data(buf);
 			}
 		}
+		*/
 	};
 
+	/*
 	this.on_one_package_data = function(package_buf) {
 		var package_json = package_buf.toJSON();
 		
 		if(Conf.is_debug) {
 			console.log(package_json);
 		}
+	};
+	*/
+
+	this.final = function() {
+		this.socket.disconnect(true);
+	};
+
+	this.host = function() {
+		//console.log(this.socket.handshake);
+		return this.socket.handshake.address;
+	};
+
+	this.say_to_client = function(data) {
+		this.socket.emit('data', data);
 	};
 }
 

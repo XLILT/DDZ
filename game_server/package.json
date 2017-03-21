@@ -1,0 +1,13 @@
+{
+    "name": "game_server",
+    "description": "DouDiZhu online game with web UI, real-time game server",
+    "version": "0.0.1",
+    "author": {
+        "name": "mxl",
+        "email": "xiaolongicx@gmail.com"
+    },
+    "license": "GUN",
+    "dependencies": {
+        "socket.io": ""
+    }
+}
