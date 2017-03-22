@@ -31,6 +31,7 @@ function Game() {
 	};
 
 	this.set_players_poker = function(pokers, players_poker_count) {
+		this.you.hand_poker = [];
 		pokers.forEach((poker) => {
 			this.you.hand_poker.push(new Poker(poker.id));
 		});
@@ -48,8 +49,22 @@ function Game() {
 		}
 	};
 
-	this.try_gamble_score = function(time) {
+	this.try_gamble_score = function(index, time) {
 		UI.show_gamble_score_bar();
+		
+		var position = '';
+		if(index !== this.you.index) {
+			position = this.enemys[index].locate_position(this.you.postion);
+		}
+		else {
+			setTimeout(() => {
+				if(this.you.gamble_score === -1) {
+					UI.gamble_score(0);
+				}
+			}, time);
+		}
+
+		UI.clock_time(position, time);
 	};
 
 	this.set_landlord_pokers = function(pokers) {
@@ -59,5 +74,10 @@ function Game() {
 		});
 
 		UI.show_landlord_poker(landlord_pokers);
+	};
+
+	this.you_gamble_score = function(score) {
+		this.you.gamble_score = score;
+		client.gamble_score(score);
 	};
 }

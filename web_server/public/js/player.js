@@ -23,4 +23,5 @@ function You() {
     this.sex = '';
     this.hand_poker = [];
     this.last_ground_poker = [];
+	this.gamble_score = -1;
 }

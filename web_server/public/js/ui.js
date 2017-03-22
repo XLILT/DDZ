@@ -1,6 +1,10 @@
 function UI() {
 }
 
+UI.timer_my_clock = 0;
+UI.timer_left_clock = 0;
+UI.timer_right_clock = 0;
+
 UI.create_small_poker_dom = function(poker, margin_left, z_index) {
     var $num_node = $('<p></p>');
     $num_node.addClass('num');
@@ -276,3 +280,80 @@ UI.get_selected_pokers = function() {
 
     return selected_pokers;
 };
+
+UI.clock_time = function(position, time) {
+	switch(position)
+	{
+	case 'left':
+		$('.left-user .clock p').html(parseInt(time / 1000));
+		$('.left-user .clock').removeClass('hide');
+		UI.timer_left_clock = setInterval(() => {
+			var sec = parseInt($('.left-user .clock p').html()) - 1;
+			if(sec > 0) {
+				$('.left-user .clock p').html(sec);
+			}
+			else {
+				clearInterval(UI.timer_left_clock);
+				UI.timer_left_clock = 0;
+
+				$('.left-user .clock').addClass('hide');
+			}
+		}, 1000);
+		break;
+	case 'right':
+		$('.right-user .clock p').html(parseInt(time / 1000));
+		$('.right-user .clock').removeClass('hide');
+		UI.timer_right_clock = setInterval(() => {
+			var sec = parseInt($('.right-user .clock p').html()) - 1;
+			if(sec > 0) {
+				$('.right-user .clock p').html(sec);
+			}
+			else {
+				clearInterval(UI.timer_right_clock);
+				UI.timer_right_clock = 0;
+
+				$('.right-user .clock').addClass('hide');
+			}
+		}, 1000);
+		break;
+	default:
+		$('.my-base-info .clock p').html(parseInt(time / 1000));
+		$('.my-base-info .clock').removeClass('hide');
+		UI.timer_my_clock = setInterval(() => {
+			var sec = parseInt($('.my-base-info .clock p').html()) - 1;
+			if(sec > 0) {
+				$('.my-base-info .clock p').html(sec);
+			}
+			else {
+				clearInterval(UI.timer_my_clock);
+				UI.timer_my_clock = 0;
+
+				$('.my-base-info .clock').addClass('hide');
+			}
+		}, 1000);
+	}
+};
+
+UI.stop_clock = function(position) {
+	switch(position)
+	{
+	case 'left':
+		clearInterval(UI.timer_left_clock);
+		UI.timer_left_clock = 0;
+
+		$('.left-user .clock').addClass('hide');
+		break;
+	case 'right':
+		clearInterval(UI.timer_right_clock);
+		UI.timer_right_clock = 0;
+
+		$('.right-user .clock').addClass('hide');
+		break;
+	default:
+		clearInterval(UI.timer_my_clock);
+		UI.timer_my_clock = 0;
+
+		$('.my-base-info .clock').addClass('hide');
+	}
+};
+

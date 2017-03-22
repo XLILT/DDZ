@@ -487,3 +487,33 @@ ul, li {
 .my-hand-poker .poker.selected {
     top: 0px;
 }
+
+.clock {
+	width: 32px;
+	height: 32px;
+	position: relative;
+	
+	background: url(../img/alarm.png) no-repeat center center;
+}
+
+.clock p {
+	font-weight: bold;
+	text-align: center;
+	padding: 9px 0;
+}
+
+.left-user .clock {
+	top: 10px;
+	left: 30px;
+}
+
+.right-user .clock {
+	top: 10px;
+	left: 30px;
+}
+
+.my-base-info .clock {
+	top: -60px;
+	left: 80px;
+}
+

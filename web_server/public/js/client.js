@@ -36,7 +36,7 @@ function Client(url) {
 			game.set_players_poker(data.pokers, data.players_poker_count);
 			break;
 		case 'gamble_score':
-			game.try_gamble_score(data.time);
+			game.try_gamble_score(data.index, data.time);
 			break;
 		case 'landlord_pokers':
 			game.set_landlord_pokers(data.pokers);
@@ -53,5 +53,11 @@ function Client(url) {
 		});
 	};
 
+	this.gamble_score = function(score) {
+		this.say_to_server({
+			event: 'gamble_score',
+			score: score
+		});
+	}
 }
 
