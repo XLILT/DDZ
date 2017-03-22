@@ -41,6 +41,9 @@ function Client(url) {
 		case 'landlord_pokers':
 			game.set_landlord_pokers(data.pokers);
 			break;
+		case 'base_score':
+			game.set_base_score(data.base_score);
+			break;
 		default:
 		};
 	};

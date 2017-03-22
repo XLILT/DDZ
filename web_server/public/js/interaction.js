@@ -35,6 +35,7 @@
     });
 
 	$('.gamble-score-bar').delegate('.button', 'click', function() {
+		UI.stop_clock('');
 		switch($(this).attr('title'))
 		{
 		case '1分':

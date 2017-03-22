@@ -1,4 +1,5 @@
 function Game() {
+	this.base_score = 0;
     this.last_player_index = 0;
     this.last_played_pokers = [];
     this.enemys = {};
@@ -79,5 +80,10 @@ function Game() {
 	this.you_gamble_score = function(score) {
 		this.you.gamble_score = score;
 		client.gamble_score(score);
+	};
+
+	this.set_base_score = function(score) {
+		this.base_score = score;
+		UI.show_bscore(score);
 	};
 }

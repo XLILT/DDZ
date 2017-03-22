@@ -135,12 +135,14 @@ function Game(gate) {
 			if(this.player_count >= MAX_PLAYER_COUNT) {
 				this.sync_players_poker_to_all();
 			}
+			
+			if(this.gamble_score_player_index === -2) {
+				this.sync_landlord_pokers_to_all();
+				this.sync_base_score_to_all();
+			}			
 		}
 
-		if(this.gamble_score_player_index === -2) {
-			this.sync_landlord_pokers_to_all();
-		}
-	};
+			};
 
 	this.start_game = function() {
 		this.init_pokers();
