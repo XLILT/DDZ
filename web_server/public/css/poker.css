@@ -59,6 +59,12 @@
 	-webkit-transform: rotate(-180deg);
 }
 
+.poker p.num.num18::after,
+.poker p.num.num19::after {
+	top: 20px;
+}
+
+
 .poker p.num.spade.num3,
 .poker p.num.spade.num3::after,
 .poker p.num.clubs.num3,

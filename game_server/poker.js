@@ -1,3 +1,7 @@
+#!/usr/bin/env node
+
+exports = module.exports = Poker;
+
 function Poker(id) {
     if(Poker.all_pokers.indexOf(id) === -1) {
         throw "invalid poker id" + id;
@@ -46,6 +50,18 @@ Poker.poker_group_type = {
     "quadruple_with_single": 41,       //四带单
     "quadruple_with_double": 42,       //四带对
     "quadruple_boom": 98               //四不带炸弹
+};
+
+Poker.shuffle = function() {
+	var pokers_id = Poker.all_pokers.slice();
+	var pokers_deck = [];
+
+	while(pokers_id.length) {
+		var poker_id = pokers_id.splice(parseInt(Math.random() * pokers_id.length), 1)[0];
+		pokers_deck.push(new Poker(poker_id));
+	}
+	
+	return pokers_deck;
 };
 
 Poker.sort = function(pokers) {

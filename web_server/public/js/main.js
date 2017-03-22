@@ -11,8 +11,8 @@
     //UI.show_enemy_portrait('left', 'xl', 'landlord');
     //UI.show_enemy_portrait('right', 'cx', 'female');
 
-    UI.show_enemy_hand_poker('left', 9);
-    UI.show_enemy_hand_poker('right', 10);
+    //UI.show_enemy_hand_poker('left', 9);
+    //UI.show_enemy_hand_poker('right', 10);
 
     //UI.show_enemy_ground_poker('left', [new Poker(203), new Poker(204)]);
     UI.show_enemy_ground_poker('left', [new Poker(203), new Poker(204), new Poker(205), new Poker(206), new Poker(207)]);
@@ -28,5 +28,5 @@
 
     //UI.show_my_portrait('xl', 'male');
 
-    UI.show_my_hand_poker([new Poker(408), new Poker(409), new Poker(410), new Poker(411), new Poker(412)]);
+    //UI.show_my_hand_poker([new Poker(408), new Poker(409), new Poker(410), new Poker(411), new Poker(412)]);
 })(window);

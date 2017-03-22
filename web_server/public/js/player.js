@@ -3,6 +3,7 @@ function Enemy() {
     this.position = '';
     this.name = '';
     this.sex = '';
+	this.gamble_score = -1;
     this.hand_poker_count = 0;
     this.last_ground_poker = [];
 

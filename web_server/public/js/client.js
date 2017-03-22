@@ -31,6 +31,16 @@ function Client(url) {
 			break;
 		case 'players_portrait':
 			game.set_players_portrait(data.users_data);
+			break;
+		case 'hand_pokers':
+			game.set_players_poker(data.pokers, data.players_poker_count);
+			break;
+		case 'gamble_score':
+			game.try_gamble_score(data.time);
+			break;
+		case 'landlord_pokers':
+			game.set_landlord_pokers(data.pokers);
+			break;
 		default:
 		};
 	};

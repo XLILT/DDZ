@@ -29,4 +29,35 @@ function Game() {
 			}
 		});
 	};
+
+	this.set_players_poker = function(pokers, players_poker_count) {
+		pokers.forEach((poker) => {
+			this.you.hand_poker.push(new Poker(poker.id));
+		});
+
+		UI.show_my_hand_poker(Poker.sort(this.you.hand_poker).reverse());
+
+		for(var index in players_poker_count) {
+			if(this.enemys[index]) {
+				this.enemys[index].hand_poker_count = players_poker_count[index];
+			}
+		}
+
+		for(var index in this.enemys) {
+			UI.show_enemy_hand_poker(this.enemys[index].position, this.enemys[index].hand_poker_count);
+		}
+	};
+
+	this.try_gamble_score = function(time) {
+		UI.show_gamble_score_bar();
+	};
+
+	this.set_landlord_pokers = function(pokers) {
+		var landlord_pokers = [];
+		pokers.forEach((poker) => {
+			landlord_pokers.push(new Poker(poker.id));
+		});
+
+		UI.show_landlord_poker(landlord_pokers);
+	};
 }
