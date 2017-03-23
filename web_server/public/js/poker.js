@@ -114,7 +114,7 @@ Poker.get_pokers_type_and_min_value = function(pokers) {
                 if(is_valid) {
                     return {
                         type: Poker.poker_group_type["single_sequence"],
-                        value: Poker.get_number(sorted_pokers[0])
+                        value: sorted_pokers[0].get_num()
                     };
                 }
             }
@@ -124,7 +124,7 @@ Poker.get_pokers_type_and_min_value = function(pokers) {
             if (pokers.length === 2) {
                 return {
                     type: Poker.poker_group_type["double"],
-                    value: Poker.get_number(pokers[0])
+                    value: pokers[0].get_num()
                 };
             }
             else if(pokers.length % 2 === 0) {
@@ -145,7 +145,7 @@ Poker.get_pokers_type_and_min_value = function(pokers) {
                 if (is_valid) {
                     return {
                         type: Poker.poker_group_type["doubule_sequence"],
-                        value: Poker.get_number(sorted_pokers[0])
+                        value: sorted_pokers[0].get_num()
                     };
                 }
             }

@@ -165,6 +165,7 @@ UI.show_enemy_hand_poker = function(position, poker_count) {
 };
 
 UI.show_enemy_ground_poker = function(position, pokers) {
+	console.log(pokers);
     var class_name = position == 'left' ? '.left-ground-poker' : '.right-ground-poker';
 
     $(class_name).children().remove();
@@ -181,24 +182,25 @@ UI.show_enemy_ground_poker = function(position, pokers) {
         pokers = pokers.reverse();
     }
 
-    pokers.forEach(function(poker) {
-        $(class_name).append(UI.create_middle_poker_dom(poker, z_index, margin_left));
-            margin_left += margin_interval;
-            z_index += layer_interval;
-    });
+	pokers.forEach(function(poker) {
+		$(class_name).append(UI.create_middle_poker_dom(poker, z_index, margin_left));
+			margin_left += margin_interval;
+			z_index += layer_interval;
+	});
 };
 
 UI.show_my_ground_poker = function(pokers) {
+	console.log(pokers);
     $('.my-ground-poker').children().remove();
 
     const margin_interval = 20, layer_interval = 1;
     var margin_left = (1024 - (pokers.length - 1) * 20 - 90) / 2, z_index = 1;
 
-    pokers.forEach(function(poker) {
-        $('.my-ground-poker').append(UI.create_middle_poker_dom(poker, z_index, margin_left));
-        margin_left += margin_interval;
-        z_index += layer_interval;
-    });
+	pokers.forEach(function(poker) {
+		$('.my-ground-poker').append(UI.create_middle_poker_dom(poker, z_index, margin_left));
+		margin_left += margin_interval;
+		z_index += layer_interval;
+	});
 };
 
 UI.show_gamble_score_bar = function() {
@@ -384,5 +386,9 @@ UI.show_player_gamble_score = function(position, score) {
 
 UI.hide_gamble_score = function() {
 	$('.gamble-score').addClass('hide');
-}
+};
+
+UI.reselect_poker = function() {
+	$('.my-hand-poker .poker').removeClass('selected');
+};
 

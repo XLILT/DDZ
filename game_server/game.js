@@ -4,6 +4,7 @@ var Conf = require('./conf');
 var Dao = require('./dao');
 var Poker = require('./poker');
 var Player = require('./player');
+var PokerRule = require('./rule');
 
 exports = module.exports = Game;
 
@@ -16,7 +17,9 @@ function Game(gate) {
 	this.session_index_map = {};
 	this.uid_index_map = {};
 	this.index_player_map = {};
+	this.playing_index = -1;
 	this.last_play_player_index = -1;
+	this.last_play_pokers = [];
 	this.base_score = 0;
 	this.rate = 1;
 	this.landlord_index = -1;
@@ -34,6 +37,9 @@ function Game(gate) {
 			break;
 		case 'gamble_score':
 			this.on_gamble_score(id, data);
+			break;
+		case 'play_poker':
+			this.on_play_poker(id, data);
 			break;
 		default:
 		}
@@ -247,6 +253,8 @@ function Game(gate) {
 		
 
 		this.gamble_score_player_index = -2;
+		this.playing_index = this.landlord_index;
+		this.last_play_player_index = this.landlord_index;
 
 		this.index_player_map[this.landlord_index].is_landlord = true;
 		this.index_player_map[this.landlord_index].sex = 'landlord';
@@ -270,8 +278,64 @@ function Game(gate) {
 		clearTimeout(this.timer_gamble_score);
 	};
 
+	this.on_play_poker = function(id, data) {
+		console.log(id, data);
+
+		var user_index = this.session_index_map[id];
+		var playing_poker = [];
+
+		if(this.playing_index !== user_index) {
+			return;
+		}
+
+		var cope_poker = this.last_play_pokers;
+		if(this.last_play_player_index === user_index) {
+			cope_poker = [];
+
+			if(data.pokers.length === 0) {
+				playing_poker.push(Poker.sort(this.index_player_map[this.playing_index].hand_pokers)[0]);
+			}
+		}
+		
+		if(data.pokers.length > 0) {
+			var is_all_pokers_in_hands = true;
+				
+			data.pokers.forEach((poker) => {
+				playing_poker.push(new Poker(poker.id));
+			});
+
+			if(!this.index_player_map[user_index].is_pokers_all_in_hand(playing_poker)) {
+				return;
+			}
+		}
+
+		console.log(playing_poker, cope_poker);
+		if(PokerRule.could_play_poker(playing_poker, cope_poker)) {
+			this.last_play_player_index = this.playing_index;	
+			this.last_play_pokers = playing_poker;
+
+			this.index_player_map[user_index].remove_pokers_from_hand(playing_poker)
+
+			this.say_to_all_session({event: 'play_poker', index: user_index, pokers: playing_poker});
+			this.sync_players_poker_to_all();
+
+			this.playing_index = this.playing_index + 1 >= 3 ? 0 : this.playing_index + 1;
+			this.ready_to_play_poker(this.playing_index);
+		}
+		else {
+			console.log('could not play');
+			this.say_to_session(id, {error: 'could not play'});
+		}
+	};
+
 	this.ready_to_play_poker = function(index) {
-		this.say_to_all_session({event: 'ready_to_play', index: index, time: 30000});
+		var timeout = 5000;
+		this.say_to_all_session({event: 'ready_to_play', index: index, time: timeout});
+
+		var session_id = this.index_player_map[index].session_id;
+		setTimeout(() => {
+			this.on_play_poker(session_id, {pokers: []});
+		}, timeout)
 	};
 
 	this.sync_rate_to_all = function() {

@@ -91,13 +91,14 @@ function Game() {
 
 	this.landlord_elected = function(index) {
 		this.landlord_index = index;
+		this.last_player_index = index;
 		var name = index === this.you.index ? this.you.name : this.enemys[index].name;
 		UI.show_tips(name + '成为地主，游戏即将开始');
 
 		setTimeout(() => {
 			UI.hide_gamble_score();
-			//UI.show_tool_bar(true);
-		}, 3000);
+			UI.show_tool_bar(true);
+		}, 2000);
 	};
 
 	this.set_player_gamble_score = function(index, score) {
@@ -113,9 +114,60 @@ function Game() {
 		if(index === this.you.index) {
 			UI.show_tool_bar();
 			UI.clock_time('', time);
+
+			setTimeout(() => {
+				UI.show_tool_bar(true);
+			}, time);
 		}
 		else {
 			UI.clock_time(this.enemys[index].position, time);
+		}
+	};
+
+	this.you_play = function(is_pass = false) {
+		var cope_pokers = [], playing_pokers = [];
+		if(is_pass) {
+			if(this.last_player_index === this.you.index) {
+				playing_pokers.push(Poker.sort(this.you.hand_poker)[0]);
+			}
+		}
+		else {
+			cope_pokers = this.last_played_pokers;
+			playing_pokers = UI.get_selected_pokers();
+
+		}
+
+		if(PokerRule.could_play_poker(playing_pokers, cope_pokers)) {
+			//console.log("could play");
+			//this.you_play(playing_pokers);
+			client.play_poker(playing_pokers);
+
+			UI.show_tool_bar(true);
+		}
+		else {
+			UI.show_tips("你选择的牌不符合规则");
+		}
+
+	};
+
+	this.reselect_poker = function() {
+		UI.reselect_poker();
+	};
+
+	this.on_play_poker = function(index, pokers) {
+		var position = index === this.you.index ? '' : this.enemys[index].position;
+		UI.stop_clock(position);
+
+		var playing_pokers = [];
+		pokers.forEach((poker) => {
+			playing_pokers.push(new Poker(poker.id));
+		});
+
+		if(position === '') {
+			UI.show_my_ground_poker(playing_pokers);
+		}
+		else {
+			UI.show_enemy_ground_poker(position, playing_pokers);
 		}
 	};
 }

@@ -56,6 +56,9 @@ function Client(url) {
 		case 'ready_to_play':
 			game.ready_to_play(data.index, data.time);
 			break;
+		case 'play_poker':
+			game.on_play_poker(data.index, data.pokers);
+			break;
 		default:
 		};
 	};
@@ -73,6 +76,13 @@ function Client(url) {
 			event: 'gamble_score',
 			score: score
 		});
-	}
+	};
+
+	this.play_poker = function(pokers) {
+		this.say_to_server({
+			event: 'play_poker',
+			pokers: pokers
+		});
+	};
 }
 
