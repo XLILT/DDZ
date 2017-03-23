@@ -143,7 +143,7 @@ Poker.get_pokers_type_and_min_value = function(pokers) {
                     value: pokers[0].get_num()
                 };
             }
-            else if(pokers.length % 2 === 0) {
+            else if(pokers.length % 2 === 0 && pokers.length > 4) {
                 var sorted_pokers = Poker.sort(pokers);
                 var current_num = sorted_pokers[0].get_num(),
                     is_valid = true;
@@ -181,9 +181,12 @@ Poker.get_pokers_type_and_min_value = function(pokers) {
                 single_count = 0,
                 double_count = 0;
 
+			var triple_num_array = [];
+
             for(var poker_num in number_group) {
                 if(number_group[poker_num] === 3) {
                     triple_count++;
+					triple_num_array.push(poker_num);
 
                     if(min_number === 0) {
                         min_number = poker_num;
@@ -200,6 +203,20 @@ Poker.get_pokers_type_and_min_value = function(pokers) {
                 }
             }
 
+			if(triple_count > 1) {
+				triple_num_array.sort();
+
+				var last_num = 0;
+				triple_num_array.forEach((num) => {
+					if(last_num !== 0) {
+						if(num !== last_num + 1) {
+							return false;
+						}
+					}
+
+					last_num = num;
+				});
+			}
             var is_valid = true,
                 group_type = Poker.poker_group_type["triple_sequence"];
             if(single_count === 0 || double_count === 0) {

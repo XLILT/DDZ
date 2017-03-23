@@ -134,7 +134,6 @@ function Game() {
 		else {
 			cope_pokers = this.last_played_pokers;
 			playing_pokers = UI.get_selected_pokers();
-
 		}
 
 		if(PokerRule.could_play_poker(playing_pokers, cope_pokers)) {
@@ -168,6 +167,11 @@ function Game() {
 		}
 		else {
 			UI.show_enemy_ground_poker(position, playing_pokers);
+		}
+
+		if(playing_pokers.length > 0) {
+			this.last_player_index = index;
+			this.last_played_poker = playing_pokers;
 		}
 	};
 }

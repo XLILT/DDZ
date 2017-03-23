@@ -24,6 +24,7 @@ function Game(gate) {
 	this.rate = 1;
 	this.landlord_index = -1;
 	this.timer_gamble_score = 0;
+	this.timer_play_poker = 0;
 	this.gamble_score_player_index = -1;
 
 	this.dao = new Dao(Conf.user_db.host, Conf.user_db.port, Conf.user_db.user, Conf.user_db.passwd);
@@ -279,8 +280,10 @@ function Game(gate) {
 	};
 
 	this.on_play_poker = function(id, data) {
-		console.log(id, data);
-
+		if(this.timer_play_poker) {
+			clearTimeout(this.timer_play_poker);
+			this.timer_play_poker = 0;
+		}
 		var user_index = this.session_index_map[id];
 		var playing_poker = [];
 
@@ -309,16 +312,21 @@ function Game(gate) {
 			}
 		}
 
-		console.log(playing_poker, cope_poker);
 		if(PokerRule.could_play_poker(playing_poker, cope_poker)) {
-			this.last_play_player_index = this.playing_index;	
-			this.last_play_pokers = playing_poker;
+			if(playing_poker.length > 0) {
+				this.last_play_player_index = this.playing_index;	
+				this.last_play_pokers = playing_poker;
+			}
 
-			this.index_player_map[user_index].remove_pokers_from_hand(playing_poker)
-
+			this.index_player_map[user_index].remove_pokers_from_hand(playing_poker);
+			
 			this.say_to_all_session({event: 'play_poker', index: user_index, pokers: playing_poker});
 			this.sync_players_poker_to_all();
 
+			if(this.index_player_map[user_index].hand_pokers.length === 0) {
+				this.game_over();
+				return;
+			}
 			this.playing_index = this.playing_index + 1 >= 3 ? 0 : this.playing_index + 1;
 			this.ready_to_play_poker(this.playing_index);
 		}
@@ -333,9 +341,9 @@ function Game(gate) {
 		this.say_to_all_session({event: 'ready_to_play', index: index, time: timeout});
 
 		var session_id = this.index_player_map[index].session_id;
-		setTimeout(() => {
+		this.timer_play_poker = setTimeout(() => {
 			this.on_play_poker(session_id, {pokers: []});
-		}, timeout)
+		}, timeout);
 	};
 
 	this.sync_rate_to_all = function() {

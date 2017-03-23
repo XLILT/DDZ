@@ -2,7 +2,7 @@ function PokerRule() {
 }
 
 PokerRule.could_play_poker = function(playing_pokers, cope_pokers) {
-	if(playing_pokers.length = 0) {
+	if(playing_pokers.length === 0) {
 		return true;
 	}
 
