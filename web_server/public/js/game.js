@@ -96,7 +96,7 @@ function Game() {
 
 		setTimeout(() => {
 			UI.hide_gamble_score();
-			UI.show_tool_bar(true);
+			//UI.show_tool_bar(true);
 		}, 3000);
 	};
 
@@ -106,6 +106,16 @@ function Game() {
 		}
 		else {
 			UI.show_player_gamble_score(this.enemys[index].position, score);
+		}
+	};
+
+	this.ready_to_play = function(index, time) {
+		if(index === this.you.index) {
+			UI.show_tool_bar();
+			UI.clock_time('', time);
+		}
+		else {
+			UI.clock_time(this.enemys[index].position, time);
 		}
 	};
 }

@@ -52,6 +52,10 @@ function Client(url) {
 			break;
 		case 'player_gamble_score':
 			game.set_player_gamble_score(data.index, data.score);
+			break;
+		case 'ready_to_play':
+			game.ready_to_play(data.index, data.time);
+			break;
 		default:
 		};
 	};

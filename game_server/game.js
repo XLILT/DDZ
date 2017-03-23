@@ -271,6 +271,7 @@ function Game(gate) {
 	};
 
 	this.ready_to_play_poker = function(index) {
+		this.say_to_all_session({event: 'ready_to_play', index: index, time: 30000});
 	};
 
 	this.sync_rate_to_all = function() {
