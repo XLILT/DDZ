@@ -357,3 +357,32 @@ UI.stop_clock = function(position) {
 	}
 };
 
+UI.show_player_gamble_score = function(position, score) {
+	switch(position)
+	{
+	case 'left':
+		$('.left-ground-poker .gamble-score').children().remove();
+		$('.left-ground-poker .gamble-score').removeClass('hide');
+
+		var $yellow_num_dom = UI.create_yellow_num_dom(score).reverse();
+			$yellow_num_dom.forEach(function($dom) {
+		    $('.left-ground-poker .gamble-score').append($dom);
+		});
+		break;
+	case 'right':
+		$('.right-ground-poker .gamble-score').children().remove();
+		$('.right-ground-poker .gamble-score').removeClass('hide');
+
+		var $yellow_num_dom = UI.create_yellow_num_dom(score).reverse();
+			$yellow_num_dom.forEach(function($dom) {
+		    $('.right-ground-poker .gamble-score').append($dom);
+		});
+		break;
+	default:
+	}
+};
+
+UI.hide_gamble_score = function() {
+	$('.gamble-score').addClass('hide');
+}
+

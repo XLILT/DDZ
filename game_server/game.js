@@ -205,6 +205,8 @@ function Game(gate) {
 			return;
 		}
 
+		this.say_to_all_session({event: 'player_gamble_score', index: this.gamble_score_player_index, score: score});
+
 		if(this.base_score < score) {
 			this.base_score = score;
 			this.landlord_index = this.gamble_score_player_index;
@@ -214,7 +216,16 @@ function Game(gate) {
 
 		var next_gamble_index = this.gamble_score_player_index + 1 >= 3 ? 0 : this.gamble_score_player_index + 1;
 		if(this.index_player_map[next_gamble_index].has_gamble_score || score === 3) {
-			this.begin_to_play_poker();
+			if(this.base_score <= 0) {
+				this.game_over();
+				return;
+			}
+			
+			this.say_to_all_session({event: 'landlord_elected', index: this.landlord_index});
+			
+			setTimeout(() => {
+				this.begin_to_play_poker();
+			}, 3000);
 		}
 		else {
 			this.gamble_score_player_index = next_gamble_index;
@@ -224,7 +235,7 @@ function Game(gate) {
 
 	this.gamble_score_with_current_player = function() {
 		var timeout = 5000;
-		this.say_to_session(this.index_player_map[this.gamble_score_player_index].session_id, {event: 'gamble_score', index: this.gamble_score_player_index, time: timeout});
+		this.say_to_all_session({event: 'gamble_score', index: this.gamble_score_player_index, time: timeout});
 
 		this.timer_gamble_score = setTimeout(() => {
 			this.gamble_score(0);
@@ -233,10 +244,7 @@ function Game(gate) {
 	};
 
 	this.begin_to_play_poker = function() {
-		if(this.base_score <= 0) {
-			this.game_over();
-			return;
-		}
+		
 
 		this.gamble_score_player_index = -2;
 
@@ -247,6 +255,7 @@ function Game(gate) {
 		this.sync_players_portrait_to_all();
 		this.sync_players_poker_to_all();
 		this.sync_base_score_to_all();
+		this.sync_rate_to_all();
 		this.sync_landlord_pokers_to_all();
 		
 		this.ready_to_play_poker(this.landlord_index);
@@ -277,7 +286,7 @@ function Game(gate) {
 	};
 
 	this.game_over = function() {
-
+		this.say_to_all_session({event: 'game_over'});
 	};
 
 	this.say_to_session = function(id, data) {

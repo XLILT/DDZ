@@ -44,6 +44,14 @@ function Client(url) {
 		case 'base_score':
 			game.set_base_score(data.base_score);
 			break;
+		case 'rate':
+			game.set_rate(data.rate);
+			break;
+		case 'landlord_elected':
+			game.landlord_elected(data.index);
+			break;
+		case 'player_gamble_score':
+			game.set_player_gamble_score(data.index, data.score);
 		default:
 		};
 	};

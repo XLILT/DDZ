@@ -1,5 +1,7 @@
 function Game() {
 	this.base_score = 0;
+	this.rate = 1;
+	this.landlord_index = -1;
     this.last_player_index = 0;
     this.last_played_pokers = [];
     this.enemys = {};
@@ -51,18 +53,13 @@ function Game() {
 	};
 
 	this.try_gamble_score = function(index, time) {
-		UI.show_gamble_score_bar();
 		
 		var position = '';
 		if(index !== this.you.index) {
-			position = this.enemys[index].locate_position(this.you.postion);
+			position = this.enemys[index].position;
 		}
 		else {
-			setTimeout(() => {
-				if(this.you.gamble_score === -1) {
-					UI.gamble_score(0);
-				}
-			}, time);
+			UI.show_gamble_score_bar();
 		}
 
 		UI.clock_time(position, time);
@@ -85,5 +82,30 @@ function Game() {
 	this.set_base_score = function(score) {
 		this.base_score = score;
 		UI.show_bscore(score);
+	};
+
+	this.set_rate = function(rate) {
+		this.rate = rate;
+		UI.show_rate(rate);
+	};
+
+	this.landlord_elected = function(index) {
+		this.landlord_index = index;
+		var name = index === this.you.index ? this.you.name : this.enemys[index].name;
+		UI.show_tips(name + '成为地主，游戏即将开始');
+
+		setTimeout(() => {
+			UI.hide_gamble_score();
+			UI.show_tool_bar(true);
+		}, 3000);
+	};
+
+	this.set_player_gamble_score = function(index, score) {
+		if(index === this.you.index) {
+			UI.gamble_score(score);
+		}
+		else {
+			UI.show_player_gamble_score(this.enemys[index].position, score);
+		}
 	};
 }

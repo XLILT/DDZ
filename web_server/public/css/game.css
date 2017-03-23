@@ -517,3 +517,11 @@ ul, li {
 	left: 80px;
 }
 
+.gamble-score {
+	width: 40px;
+}
+
+.right-ground-poker .gamble-score {
+	width: 300px;
+}
+
