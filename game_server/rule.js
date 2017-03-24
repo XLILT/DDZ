@@ -21,13 +21,13 @@ PokerRule.could_play_poker = function(playing_pokers, cope_pokers) {
         return true;
     }
 
-    var cope_pokers_type = this.get_pokers_type_and_min_value(cope_pokers);
+    var cope_pokers_type = Poker.get_pokers_type_and_min_value(cope_pokers);
     if(cope_pokers_type === false) {
         return false;
     }
 
-    if(playing_pokers_type.type === this.poker_group_type["joker_boom"]) {
-        if(cope_pokers_type.type === this.poker_group_type["joker_boom"]) {
+    if(playing_pokers_type.type === Poker.poker_group_type["joker_boom"]) {
+        if(cope_pokers_type.type === Poker.poker_group_type["joker_boom"]) {
             return true;
         }
         else {
@@ -35,11 +35,11 @@ PokerRule.could_play_poker = function(playing_pokers, cope_pokers) {
         }
 
     }
-    else if(playing_pokers_type.type === this.poker_group_type["quadruple_boom"]) {
-        if (cope_pokers_type.type === this.poker_group_type["joker_boom"]) {
+    else if(playing_pokers_type.type === Poker.poker_group_type["quadruple_boom"]) {
+        if (cope_pokers_type.type === Poker.poker_group_type["joker_boom"]) {
             return false;
         }
-        else if(cope_pokers_type.type === this.poker_group_type["quadruple_boom"]) {
+        else if(cope_pokers_type.type === Poker.poker_group_type["quadruple_boom"]) {
             if(playing_pokers_type.value > cope_pokers_type.value) {
                 return true;
             }
@@ -52,8 +52,8 @@ PokerRule.could_play_poker = function(playing_pokers, cope_pokers) {
         }
     }
     else {
-        if (cope_pokers_type.type === this.poker_group_type["joker_boom"]
-            || cope_pokers_type.type === this.poker_group_type["quadruple_boom"]) {
+        if (cope_pokers_type.type === Poker.poker_group_type["joker_boom"]
+            || cope_pokers_type.type === Poker.poker_group_type["quadruple_boom"]) {
             return false;
         }
         else {

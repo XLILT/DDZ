@@ -85,8 +85,10 @@ Poker.get_pokers_type_and_min_value = function(pokers) {
                     value: pokers[0].get_num()
                 };
             }
-            else if (pokers.length === 2) {
-                if (pokers.indexOf(518) > -1 && pokers.indexOf(519) > -1)
+             else if (pokers.length === 2) {
+                if ((pokers[0].id === 518 && pokers[1].id === 519)
+					||(pokers[1].id === 518 && pokers[0].id === 519)
+)
                 {
                     return {
                         type: Poker.poker_group_type["joker_boom"],

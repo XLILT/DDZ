@@ -55,14 +55,14 @@ function Game(gate) {
 
 		this.dao.get_user_by_id(data.uid, (err, rows) => {
 			if(err) {
-				this.say_to_session(id, {error: 'db error'});
+				this.say_to_session(id, {error: 'login_error', msg: err});
 			}
 			else {
 				if(rows.length === 1) {
 					if(rows[0].passwd === data.passwd)	{
 						
-						this.add_player(100, {'uid': 100, 'name': 'player100'});
-						this.add_player(200, {'uid': 200, 'name': 'player200'});
+						//this.add_player(100, {'uid': 100, 'name': 'player100'});
+						//this.add_player(200, {'uid': 200, 'name': 'player200'});
 
 						var user_data = {};
 						user_data.name = rows[0].name;
@@ -71,11 +71,11 @@ function Game(gate) {
 						this.add_player(id, user_data);
 					}
 					else {
-						this.say_to_session(id, {error: 'passwd not incorrect'});
+						this.say_to_session(id, {error: 'login_error', msg: 'password not correct'});
 					}
 				}
 				else {
-					this.say_to_session(id, {error: 'db error'});
+					this.say_to_session(id, {error: 'login_error',msg: 'user not existed'});
 				}
 			}
 		});
@@ -280,16 +280,19 @@ function Game(gate) {
 	};
 
 	this.on_play_poker = function(id, data) {
-		if(this.timer_play_poker) {
-			clearTimeout(this.timer_play_poker);
-			this.timer_play_poker = 0;
-		}
-		var user_index = this.session_index_map[id];
 		var playing_poker = [];
+		var user_index = this.session_index_map[id];
 
 		if(this.playing_index !== user_index) {
 			return;
 		}
+
+		if(this.timer_play_poker) {
+			clearTimeout(this.timer_play_poker);
+			this.timer_play_poker = 0;
+		}
+
+		
 
 		var cope_poker = this.last_play_pokers;
 		if(this.last_play_player_index === user_index) {

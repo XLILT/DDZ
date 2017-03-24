@@ -18,7 +18,17 @@ function Client(url) {
 	this.on_server_data = function(data) {
 		if(data.error) {
 			console.error(data);
-			return;
+			switch(data.error)
+			{
+			case 'login_error':
+				$.cookie('uid', null);
+				$.cookie('passwd', null);
+				$.cookie('user_name', null);
+
+				window.location.href = 'index.html';
+				break;
+			default:
+			}
 		}
 		else {
 			console.log(data);
@@ -64,11 +74,23 @@ function Client(url) {
 	};
 
 	this.login = function() {
-		this.say_to_server({
-			event: 'login',
-			uid: 1,
-			passwd: $.md5('123456')
-		});
+		if(( $.cookie('uid') || $.cookie('uid') === 0)
+			&& $.cookie('passwd')
+			&& $.cookie('user_name')) {
+			
+			this.say_to_server({
+				event: 'login',
+				uid: $.cookie('uid'),
+				passwd: $.cookie('passwd')
+			});
+		}
+		else {
+			$.cookie('uid', null);
+			$.cookie('passwd', null);
+			$.cookie('user_name', null);
+
+			window.location.href = 'index.html';
+		}
 	};
 
 	this.gamble_score = function(score) {

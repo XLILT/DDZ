@@ -13,6 +13,7 @@
         "cookie-parser": "",
         "cookie-session": "",
         "express": "4.x",
+		"mysql": "",
         "fs":""
     }
 }
