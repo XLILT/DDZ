@@ -190,7 +190,6 @@ UI.show_enemy_ground_poker = function(position, pokers) {
 };
 
 UI.show_my_ground_poker = function(pokers) {
-	console.log(pokers);
     $('.my-ground-poker').children().remove();
 
     const margin_interval = 20, layer_interval = 1;
@@ -252,6 +251,12 @@ UI.show_tips = function(tips) {
 };
 
 UI.show_my_hand_poker = function(pokers) {
+	var selected_poker_id_arr = [];
+
+	UI.get_selected_pokers().forEach(function(poker) {
+		selected_poker_id_arr.push(poker.id);
+	});
+
     $('.my-hand-poker').children().remove();
 
     const margin_interval = 30, layer_interval = 1;
@@ -262,6 +267,13 @@ UI.show_my_hand_poker = function(pokers) {
         margin_left += margin_interval;
         z_index += layer_interval;
     });
+
+	$('.my-hand-poker .poker').each(function() {
+		var poker_id = parseInt($(this).attr('poker-id'));
+		if(selected_poker_id_arr.indexOf(poker_id) > -1) {
+			$(this).addClass('selected');
+		}
+	});
 
     $('.my-base-info .poker-count').children().remove();
 
