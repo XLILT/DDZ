@@ -1,6 +1,6 @@
 (function(window){
     window.game = new Game();
-	window.client = new Client('http://xl.forever.love:8888');
+	window.client = new Client('http://' + window.document.domain + ':8888');
 
 	client.login();
 
