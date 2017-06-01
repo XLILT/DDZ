@@ -1,4 +1,5 @@
 (function(window){
+    window.ui = new UI();
     window.game = new Game();
 	window.client = new Client('http://' + window.document.domain + ':8888');
 

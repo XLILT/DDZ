@@ -3,6 +3,17 @@ function Client(url) {
 
 	this.socket = io(this.url);
 	
+    this.socket.on('data', function(data) {
+        self.client.on_server_data(data);
+        //this.call(on_server_data, data);
+        //console.log(self.client);
+    });
+
+    this.socket.on('disconnect', function() {
+            self.client.socket.close();
+    });
+
+    /*
 	this.socket.on('data', (data) => {
 		this.on_server_data(data);
 	});
@@ -10,6 +21,7 @@ function Client(url) {
 	this.socket.on('disconnect', () => {
 		this.socket.close();
 	});
+    */
 
 	this.say_to_server = function(data) {
 		this.socket.emit('data', data);
@@ -32,6 +44,7 @@ function Client(url) {
 		}
 		else {
 			console.log(data);
+            //alert(data.event);
 		}
 
 		switch(data.event)
