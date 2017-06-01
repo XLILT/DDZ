@@ -194,6 +194,18 @@ Poker.get_pokers_type_and_min_value = function(pokers) {
 				triple_num_array.sort();
 
 				var last_num = 0;
+
+				for(i = 0; i < triple_num_array.length; i++) {
+					if(last_num !== 0) {
+						if(triple_num_array[i] !== last_num + 1) {
+							return false;
+						}
+					}
+
+					last_num = triple_num_array[i];
+				}
+
+				/*
 				triple_num_array.forEach((num) => {
 					if(last_num !== 0) {
 						if(num !== last_num + 1) {
@@ -203,6 +215,7 @@ Poker.get_pokers_type_and_min_value = function(pokers) {
 
 					last_num = num;
 				});
+				*/
 			}
 
             var is_valid = true,
