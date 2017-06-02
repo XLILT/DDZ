@@ -27,7 +27,7 @@ PokerRule.could_play_poker = function(playing_pokers, cope_pokers) {
     }
 
     if(playing_pokers_type.type === Poker.poker_group_type["joker_boom"]) {
-        if(cope_pokers_type.type === Poker.poker_group_type["joker_boom"]) {
+        if(cope_pokers_type.type !== Poker.poker_group_type["joker_boom"]) {
             return true;
         }
         else {

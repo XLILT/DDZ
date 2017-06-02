@@ -102,9 +102,9 @@ Poker.get_pokers_type_and_min_value = function(pokers) {
                 };
             }
             else if (pokers.length === 2) {
-                if ((pokers[0].id === 518 && pokers[1].id === 519)
-					||(pokers[1].id === 518 && pokers[0].id === 519)
-)
+				console.log(`${pokers[0].id}, ${pokers[1].id}`);
+                if ( (pokers[0].id === 518 && pokers[1].id === 519)
+					|| (pokers[1].id === 518 && pokers[0].id === 519) )
                 {
                     return {
                         type: Poker.poker_group_type["joker_boom"],
