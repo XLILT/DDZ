@@ -40,7 +40,7 @@ function Game(gate) {
 			this.on_gamble_score(id, data);
 			break;
 		case 'play_poker':
-			this.on_play_poker(id, data);
+			this.on_play_poker(id, data, true);
 			break;
 		default:
 		}
@@ -109,7 +109,9 @@ function Game(gate) {
 		var start_game = false;
 		if(this.uid_index_map.hasOwnProperty(user_data.uid)) {
 			player_index = this.uid_index_map[user_data.uid];
+			delete this.session_index_map[this.index_player_map[player_index].session_id];
 			this.index_player_map[player_index].session_id = session_id;
+			this.session_index_map[session_id] = player_index;
 		}
 		else {
 			var player = new Player();
@@ -279,11 +281,18 @@ function Game(gate) {
 		clearTimeout(this.timer_gamble_score);
 	};
 
-	this.on_play_poker = function(id, data) {
+	this.on_play_poker = function(id, data, from_client) {
 		var playing_poker = [];
-		var user_index = this.session_index_map[id];
+		var user_index = 0;
+		if(from_client) {
+			user_index = this.session_index_map[id];
+		}
+		else {
+			user_index = id;
+		}
 
 		if(this.playing_index !== user_index) {
+			console.log(`on play poker error ${this.playing_index} !== ${user_index} ${from_client}`);
 			return;
 		}
 
@@ -331,10 +340,13 @@ function Game(gate) {
 
 			this.playing_index = this.playing_index + 1 >= 3 ? 0 : this.playing_index + 1;
 			this.ready_to_play_poker(this.playing_index);
+			//console.log(`ready to play ${this.playing_index}`);
 		}
 		else {
 			console.log('could not play');
-			this.say_to_session(id, {error: 'could not play'});
+			if(from_client) {
+				this.say_to_session(id, {error: 'could not play'});
+			}
 		}
 	};
 
@@ -342,9 +354,8 @@ function Game(gate) {
 		var timeout = 5000;
 		this.say_to_all_session({event: 'ready_to_play', index: index, time: timeout});
 
-		var session_id = this.index_player_map[index].session_id;
 		this.timer_play_poker = setTimeout(() => {
-			this.on_play_poker(session_id, {pokers: []});
+			this.on_play_poker(index, {pokers: []}, false);
 		}, timeout);
 	};
 
