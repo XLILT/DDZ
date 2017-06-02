@@ -243,7 +243,7 @@ function Game(gate) {
 	};
 
 	this.gamble_score_with_current_player = function() {
-		var timeout = 5000;
+		var timeout = 30000;
 		this.say_to_all_session({event: 'gamble_score', index: this.gamble_score_player_index, time: timeout});
 
 		this.timer_gamble_score = setTimeout(() => {
@@ -296,16 +296,12 @@ function Game(gate) {
 			return;
 		}
 
-		if(this.timer_play_poker) {
-			clearTimeout(this.timer_play_poker);
-			this.timer_play_poker = 0;
-		}
-
+		
 		var cope_poker = this.last_play_pokers;
 		if(this.last_play_player_index === user_index) {
 			cope_poker = [];
 
-			if(data.pokers.length === 0) {
+			if(data.pokers.length === 0 && this.index_player_map[this.playing_index].hand_pokers.length > 0) {
 				playing_poker.push(Poker.sort(this.index_player_map[this.playing_index].hand_pokers)[0]);
 			}
 		}
@@ -318,11 +314,17 @@ function Game(gate) {
 			});
 
 			if(!this.index_player_map[user_index].is_pokers_all_in_hand(playing_poker)) {
+                console.log('poker not in hand');
 				return;
 			}
 		}
 
 		if(PokerRule.could_play_poker(playing_poker, cope_poker)) {
+            if(this.timer_play_poker) {
+                clearTimeout(this.timer_play_poker);
+                this.timer_play_poker = 0;
+            }
+
 			if(playing_poker.length > 0) {
 				this.last_play_player_index = this.playing_index;	
 				this.last_play_pokers = playing_poker;
@@ -351,7 +353,7 @@ function Game(gate) {
 	};
 
 	this.ready_to_play_poker = function(index) {
-		var timeout = 5000;
+		var timeout = 20000;
 		this.say_to_all_session({event: 'ready_to_play', index: index, time: timeout});
 
 		this.timer_play_poker = setTimeout(() => {
