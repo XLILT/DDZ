@@ -292,8 +292,6 @@ function Game(gate) {
 			this.timer_play_poker = 0;
 		}
 
-		
-
 		var cope_poker = this.last_play_pokers;
 		if(this.last_play_player_index === user_index) {
 			cope_poker = [];
@@ -330,6 +328,7 @@ function Game(gate) {
 				this.game_over();
 				return;
 			}
+
 			this.playing_index = this.playing_index + 1 >= 3 ? 0 : this.playing_index + 1;
 			this.ready_to_play_poker(this.playing_index);
 		}

@@ -95,7 +95,7 @@ this.create_poker_dom = function(poker, z_index, margin_left) {
 this.show_landlord_poker = function(pokers) {
     $('.landlord-poker').children().remove();
 
-    const margin_interval = 14, layer_interval = 1;
+    var margin_interval = 14, layer_interval = 1;
     var margin_left = -14, z_index = 1;
     pokers.forEach(function(poker) {
         $('.landlord-poker').append(self.ui.create_small_poker_dom(poker, margin_left, z_index));
